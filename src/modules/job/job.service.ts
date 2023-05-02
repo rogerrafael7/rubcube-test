@@ -1,27 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { environment } from '../../environment';
-import { readdir, readFile } from 'fs/promises';
-import { resolve } from 'path';
 import { Log } from '../database/log.schema';
 import { LogRepo } from '../database/log.repo';
 
 @Injectable()
 export class JobService {
   constructor(readonly logModel: LogRepo) {}
-  async reProcessAll() {
-    const logsFileName = (await readdir(environment.DATA_LOGS_PATH)).filter(
-      (f) => /.txt$/.test(f),
-    );
-
+  async processFile(file: Express.Multer.File) {
     await this.logModel.model.deleteMany({});
-
-    for (const filename of logsFileName) {
-      const filepath = resolve(environment.DATA_LOGS_PATH, filename);
-      await this.parseLogFile(filepath);
-    }
+    await this.parseLogFile(file.buffer.toString());
   }
-  private async parseLogFile(filepath: string) {
-    const contentTxt = await readFile(filepath, 'utf-8');
+  private async parseLogFile(contentTxt: string) {
     const initialAllLinesRegex = /[\d:]{4}\s+([\w\s]+):(.+)/;
     const initialGameRegex = /InitGame:\s+(.*)$/;
     const killRegex = /Kill:\s+[^:]+:\s+(.+)\s+killed\s+(.+)\s+by\s+(MOD_.+)/;

@@ -1,14 +1,19 @@
 version: '3'
 
 services:
-  server:
-    image: node:latest
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 3000:3000
+    volumes:
+      - .:/app
+      - /app/node_modules
     depends_on:
       - mongodb
     environment:
-      MONGO_DSN: mongodb://ruber:123@localhost:27017/rubcube_db
+      MONGO_DSN: mongodb://ruber:123@mongodb:27017/rubcube_db
 
   mongodb:
       image: mongo:latest

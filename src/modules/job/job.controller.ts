@@ -1,12 +1,19 @@
-import { Controller, Post } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
 import { JobService } from './job.service';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('job')
 export class JobController {
   constructor(readonly jobService: JobService) {}
 
-  @Post('re-process-all')
-  reProcessAll() {
-    return this.jobService.reProcessAll();
+  @Post('process-file')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    return this.jobService.processFile(file);
   }
 }
