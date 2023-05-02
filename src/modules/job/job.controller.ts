@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Post,
   UploadedFile,
@@ -13,7 +14,12 @@ export class JobController {
 
   @Post('process-file')
   @UseInterceptors(FileInterceptor('file'))
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
-    return this.jobService.processFile(file);
+  uploadFile(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() body: { removeAll: 'true' | 'false' },
+  ) {
+    const removeAll =
+      body?.removeAll === 'true' ? true : body?.removeAll !== 'false';
+    return this.jobService.processFile(file, removeAll);
   }
 }

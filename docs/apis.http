@@ -1,0 +1,36 @@
+### ADMIN Stats
+# curl --request GET
+#  --url http://localhost:3000/admin/stats/games
+GET http://localhost:3000/admin/stats/games
+
+
+
+### Player Ranking
+# curl --request GET
+#  --url 'http://localhost:3000/player/ranking?games=%5B%22Game_2%22%2C%20%22Game_3%22%5D'
+GET http://localhost:3000/player/ranking?games=%5B%22Game_2%22%2C%20%22Game_3%22%5D
+
+
+
+### Process arquivo de logs
+# curl --request POST
+#  --url http://localhost:3000/job/process-file
+#  --header 'Content-Type: multipart/form-data'
+#  --form file=@/Users/rogerrafael/pessoal-projects/rubcube-test/data-logs/games.log.txt
+#  --form removeAll=true
+POST http://localhost:3000/job/process-file
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="games.log.txt"
+
+< ../data-logs/games.log.txt
+--WebAppBoundary
+Content-Disposition: form-data; name="removeAll"
+
+true
+--WebAppBoundary--
+
+###
+
+

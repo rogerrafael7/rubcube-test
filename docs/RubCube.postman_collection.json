@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "c92cbe02-c3a0-4efb-b77c-daa8bff1cc0f",
+		"name": "RubCube",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "314489",
+		"_collection_link": "https://juma-consultoria.postman.co/workspace/Pessoal~a0d5e7bf-4516-4624-bd58-b8860dedaf97/collection/314489-c92cbe02-c3a0-4efb-b77c-daa8bff1cc0f?action=share&creator=314489&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "/admin/stats/games",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/admin/stats/games?games=[\"Game_2\", \"Game_3\"]",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"admin",
+						"stats",
+						"games"
+					],
+					"query": [
+						{
+							"key": "games",
+							"value": "[\"Game_2\", \"Game_3\"]"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/player/ranking",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/player/ranking?games=[\"Game_2\", \"Game_3\"]",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"player",
+						"ranking"
+					],
+					"query": [
+						{
+							"key": "games",
+							"value": "[\"Game_2\", \"Game_3\"]"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/job/process-file",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "../data-logs/games.log.txt"
+						},
+						{
+							"key": "removeAll",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/job/process-file",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"job",
+						"process-file"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

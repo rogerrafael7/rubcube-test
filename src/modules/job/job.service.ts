@@ -5,8 +5,10 @@ import { LogRepo } from '../database/log.repo';
 @Injectable()
 export class JobService {
   constructor(readonly logModel: LogRepo) {}
-  async processFile(file: Express.Multer.File) {
-    await this.logModel.model.deleteMany({});
+  async processFile(file: Express.Multer.File, removeAll = true) {
+    if (removeAll) {
+      await this.logModel.model.deleteMany({});
+    }
     await this.parseLogFile(file.buffer.toString());
   }
   private async parseLogFile(contentTxt: string) {

@@ -1,73 +1,45 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+### Teste Exercício: Quake log Parser
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+#### Como testar e rodar a aplicação:
+No terminal deve ser executado o comando `docker-compose up -d`,
+após a instalação das dependências e a criação dos containers,
+o servidor estará disponível em `http://localhost:3000/`.
+__Opcional__: caso queira acessar o banco de dados, segue as credenciais de acesso:
+> mongodb://ruber:123@localhost:27018/rubcube_db
 
-## Description
+##### São 3 endpoints disponíveis:
+- `GET /player/ranking`: retorna o ranking de jogadores por jogo; 
+  - Suporta o parâmetro opcional `games` para filtrar por jogo, ex: `GET /player/ranking?games=["Game_1","Game_2"]`;
+- `GET /admin/stats/games`: retorna as estatísticas dos jogos;
+  - Suporta o parâmetro opcional `games` para filtrar por jogo, ex: `GET /admin/stats/games?games=["Game_1","Game_2"]`;
+- `POST /job/process-file`: processa o arquivo de log parametrizado, faz o parse, estrutura os dados e salva no banco de dados para sem usados posteriormente nos outros endpoints;
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+É necessário o uso de uma ferramenta de teste de API, como o Postman ou Insomnia para testar os endpoints.
+Segue arquivos de configuração destas ferramentas, já contendo as APIs de cada endpoint:
+- Para o Insomnia : [apis-insomnia.json](./docs/insomnia.json)
+- Para o Postman : [apis-postman.json](./docs/RubCube.postman_collection.json)
+- Ou, existe a opção de testar ou copiar os consumos cURL que estão no arquivo [apis.http](./docs/apis.http)
 
-## Installation
+> O arquivo de log deve ser enviado no formato `multipart/form-data` com o nome `file`. Certifique-se que ele está corratamente anexado na sua aplicação de teste de APIs.
 
-```bash
-$ npm install
-```
+#### Pontos sobre o teste:
+- Eu segui na abordagem de procesar o arquivo de logs e salvar no banco de dados para serem processados depois, porém sendo salvo já estruturado. Acredito que essa abordagem seja mais performática, pois não é necessário processar o arquivo de log a cada requisição, e sim apenas uma vez, e depois consumir os dados já estruturados no banco de dados. A outra opção seria manter em memória, mas acredito que não seja uma boa prática, pois o arquivo de log pode ser muito grande e poderia acabar consumindo muita memória.
 
-## Running the app
 
-```bash
-# development
-$ npm run start
+#### Prints e Evidências
 
-# watch mode
-$ npm run start:dev
+- Print do endpoint que retorna as estadísticas dos jogos filtrando pela Game_2 e Game_3:
+![Print do endpoint que retorna as estadísticas dos jogos FILTRADO](./docs/admin_stats_filtered.png)
 
-# production mode
-$ npm run start:prod
-```
+- Print do endpoint que retorna as estadísticas de todos os jogos:
+![Print do endpoint que retorna as estadísticas dos jogos](./docs/admin_stats.png)
 
-## Test
+- Print do endpoint que retorna o ranking de jogadores filtrando pela Game_2 e Game_3:
+![Print do endpoint que retorna o ranking de jogadores FILTRADO](./docs/ranking_filtered.png)
 
-```bash
-# unit tests
-$ npm run test
+- Print do endpoint que retorna o ranking de todos os jogadores:
+![Print do endpoint que retorna o ranking de jogadores](./docs/ranking.png)
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- Print do MongoDB com os dados salvos:
+- ![Print da_collection_logs](./docs/mongodb_logs.png)

@@ -1,0 +1,170 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2023-05-02T09:30:11.038Z",
+  "__export_source": "insomnia.desktop.app:v2023.2.0",
+  "resources": [
+    {
+      "_id": "req_7286e72874e64507b77bffebea841d86",
+      "parentId": "fld_af793c2b804e446488773163ff3dca40",
+      "modified": 1683018089408,
+      "created": 1683000236808,
+      "url": "http://localhost:3000/admin/stats/games",
+      "name": "ADMIN",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_573c3b7a55dc40be90baf192421d310c",
+          "name": "games",
+          "value": "[\"Game_2\", \"Game_3\"]",
+          "description": "",
+          "disabled": true
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1683000236808,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_af793c2b804e446488773163ff3dca40",
+      "parentId": "wrk_d82fdee348c54a74bc94cc19a6509180",
+      "modified": 1682927359101,
+      "created": 1682927359101,
+      "name": "RubCube",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1682927359101,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_d82fdee348c54a74bc94cc19a6509180",
+      "parentId": null,
+      "modified": 1663452984595,
+      "created": 1663452984595,
+      "name": "TESTES",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_63b4366ada7442fda56c0c1fa182e260",
+      "parentId": "fld_af793c2b804e446488773163ff3dca40",
+      "modified": 1683019768036,
+      "created": 1683006083377,
+      "url": "http://localhost:3000/player/ranking",
+      "name": "Player",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_573c3b7a55dc40be90baf192421d310c",
+          "name": "games",
+          "value": "[\"Game_2\", \"Game_3\"]",
+          "description": "",
+          "disabled": false
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1682963799186.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_6d0de377520c4b619fe76f1860ae9dff",
+      "parentId": "fld_af793c2b804e446488773163ff3dca40",
+      "modified": 1683019503057,
+      "created": 1682927361564,
+      "url": "http://localhost:3000/job/process-file",
+      "name": "JobProcess",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "multipart/form-data",
+        "params": [
+          {
+            "id": "pair_4d1e3379b16c437eac75030b80a7b78b",
+            "name": "file",
+            "value": "{% file '../data-logs/games.log.txt' %}",
+            "description": "",
+            "type": "file",
+            "fileName": "../data-logs/games.log.txt"
+          },
+          {
+            "id": "pair_39ea9c5c4e734b378fa3c100b727c352",
+            "name": "removeAll",
+            "value": "true",
+            "description": ""
+          }
+        ]
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "multipart/form-data"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1682927361565,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_7f4816b8efd046f28205ffc737fba8ef988f0631",
+      "parentId": "wrk_d82fdee348c54a74bc94cc19a6509180",
+      "modified": 1663452984612,
+      "created": 1663452984612,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1663452984612,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_7f4816b8efd046f28205ffc737fba8ef988f0631",
+      "parentId": "wrk_d82fdee348c54a74bc94cc19a6509180",
+      "modified": 1663452984613,
+      "created": 1663452984613,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_265d1bf104294650a8b55472b035acfb",
+      "parentId": "wrk_d82fdee348c54a74bc94cc19a6509180",
+      "modified": 1663452984608,
+      "created": 1663452984608,
+      "fileName": "TESTES",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    }
+  ]
+}
