@@ -29,11 +29,11 @@ Segue arquivos de configuração destas ferramentas, já contendo as APIs de cad
 
 #### Prints e Evidências
 
-- Print do endpoint que retorna as estadísticas dos jogos filtrando pela Game_2 e Game_3:
-![Print do endpoint que retorna as estadísticas dos jogos FILTRADO](./docs/admin_stats_filtered.png)
+- Print do endpoint que retorna as estatísticas dos jogos filtrando pela Game_2 e Game_3:
+![Print do endpoint que retorna as estatísticas dos jogos FILTRADO](./docs/admin_stats_filtered.png)
 
-- Print do endpoint que retorna as estadísticas de todos os jogos:
-![Print do endpoint que retorna as estadísticas dos jogos](./docs/admin_stats.png)
+- Print do endpoint que retorna as estatísticas de todos os jogos:
+![Print do endpoint que retorna as estatísticas dos jogos](./docs/admin_stats.png)
 
 - Print do endpoint que retorna o ranking de jogadores filtrando pela Game_2 e Game_3:
 ![Print do endpoint que retorna o ranking de jogadores FILTRADO](./docs/ranking_filtered.png)
