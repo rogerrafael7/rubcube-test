@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { JobController } from './job.controller';
 import { JobService } from './job.service';
-import { MongooseModule } from '@nestjs/mongoose';
-import { Log, LogSchema } from '../../database/log.schema';
+import { DatabaseModule } from '../database/database.module';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: Log.name, schema: LogSchema }])],
+  imports: [DatabaseModule],
   controllers: [JobController],
   providers: [JobService],
   exports: [JobService],
